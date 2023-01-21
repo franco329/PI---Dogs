@@ -1,26 +1,37 @@
 const { Breed, Temperament } = require('../db');
+const allTemperaments = require('../utils/allTemperaments');
 
 const createBreed = async (data) => {
-  const { name, weightMax, weightMin, heightMax, heightMin, temperament, life_span, image } = data;
-  let newBreed = await Breed.create({
-    name,
-    weightMax,
-    weightMin,
-    heightMax,
-    heightMin,
-    temperament,
-    life_span,
-    image
-  });
+  await allTemperaments();
 
-  if (temperament) {
-    const [temp, created] = await Temperament.findOrCreate({
-      where: { name: temperament }
-    });
-    newBreed.addTemperament(temp);
+  if(!data.name) throw new Error('Breed name is required');
+  if(!data.height) throw new Error('Breed height is required');
+  if(!data.weight) throw new Error('Breed weight is required');
+
+  let newBreed = await Breed.create(data);
+
+  if (Array.isArray(data.temperament) && data.temperament.length > 0) {
+    for (let name of data.temperament) {
+      const temperamentDb = await Temperament.findOne({ where: { name } })
+      await newBreed.addTemperament(temperamentDb);
+    }
   };
-  await newBreed.save();
-  return newBreed;
+
+  const newBreedDb = await Breed.findOne({
+    where: { id: newBreed.id },
+    include: [{
+      model: Temperament,
+      as: 'temperament',
+      attributes: ['name'],
+      through: {
+        attributes: []
+      }
+    }]
+  }).then(results => results.toJSON());
+
+  newBreedDb.temperament = newBreedDb.temperament.map(temp => temp.name);
+
+  return newBreedDb;
 };
 
-module.exports = { createBreed };
+module.exports = createBreed;

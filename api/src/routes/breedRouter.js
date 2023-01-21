@@ -1,9 +1,8 @@
 const { Router } = require('express');
-const { createBreed } = require('../controllers/createBreed');
-const { getBreeds } = require('../controllers/getBreeds');
-const { getBreedById } = require('../controllers/getBreedById');
-const { findBreed } = require('../controllers/findBreed');
-const { deleteBreed } = require('../controllers/deleteBreed');
+const createBreed = require('../controllers/createBreed');
+const getBreeds = require('../controllers/getBreeds');
+const getBreedById = require('../controllers/getBreedById');
+const findBreed = require('../controllers/findBreed');
 
 const breedRouter = Router();
 
@@ -19,11 +18,14 @@ breedRouter.get('/', async (req, res) => {
   const { name } = req.query;
   let breeds;
   try {
-    if (name) breeds = await findBreed(name);
-    else breeds = await getBreeds();
-    res.status(200).json({ breeds })
+    if (!name) {
+      breeds = await getBreeds();
+    } else {
+      breeds = await findBreed(name);
+    }
+    res.status(200).json(breeds)
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(401).json({ error: error.message });
   }
 });
 
@@ -48,24 +50,13 @@ breedRouter.get('/:id', async (req, res) => {
 // creación de raza de perro por body
 // Crea una raza de perro en la base de datos relacionada con sus temperamentos
 breedRouter.post('/', async (req, res) => {
+  const breed = req.body
   try {
-    const newBreed = await createBreed(req.body);
+    const newBreed = await createBreed(breed);
     res.status(200).json(newBreed);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
-
-// [ ] DELETE /breeds/id/delete:
-breedRouter.delete('/?name=/delete', async (req, res) => {
-  const { name } = req.query;
-  try {
-    const deleted = await deleteBreed(name);
-    res.status(200).json(deleted);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
 
 module.exports = breedRouter;

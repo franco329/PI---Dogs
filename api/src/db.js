@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/breed`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/breeds`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -35,7 +35,7 @@ const { Breed, Temperament } = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Breed.belongsToMany(Temperament, { through: 'breed_temperament' });
+Breed.belongsToMany(Temperament, { as: 'temperament', through: 'breed_temperament' });
 Temperament.belongsToMany(Breed, { through: 'breed_temperament' });
 
 module.exports = {

@@ -1,10 +1,18 @@
-const { getBreeds } = require('./getBreeds');
+const allTemperaments = require('../utils/allTemperaments');
+const breedsApi = require('../utils/breedsApi');
+const breedsDb = require('../utils/breedsDb');
+const sortFn = require('../utils/sortFn')
 
 const findBreed = async (name) => {
-  const breed = await getBreeds();
-  const dataBreed = breed.filter(breed => breed.name.toLowerCase().includes(name.toLowerCase()));
-  if(!dataBreed.length) throw new Error(`${name} not found`);
-  return dataBreed;
+    const brApi = await breedsApi(name);
+    const brDb = await breedsDb(name);
+    await allTemperaments();
+    
+    const breed = [...brApi, ...brDb].sort(sortFn);
+
+  if (!breed.length) throw new Error(`The breed with the name ${name} does not exist.`);
+
+  return breed;
 };
 
-module.exports = { findBreed };
+module.exports = findBreed;
