@@ -13,7 +13,7 @@ export const Card = ({ breedData }) => {
         return (
           <div className='card' key={breed.id}>
             <div className='imgBox'>
-              <Link to={`/home/detail/${breed.id}`}>
+              <Link to={`/home/detail/${breed.id}`} className='img-detail'>
                 <img
                   src={breed.image === null ? notImage : breed.image}
                   alt={breed.id}

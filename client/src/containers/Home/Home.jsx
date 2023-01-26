@@ -27,11 +27,17 @@ export class Home extends React.Component {
     const { breedData } = this.state;
 
     return (
-      <div className='pageBody'>
-        <div className='container'>
-          <Card breedData={breedData} />
+      <>
+        <div>
+          <button>Previous</button>
+          <button>Next</button>
         </div>
-      </div>
+        <div className='pageBody'>
+          <div className='container'>
+            <Card breedData={breedData} />
+          </div>
+        </div>
+      </>
     );
   }
 }

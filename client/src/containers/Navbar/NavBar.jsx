@@ -1,7 +1,15 @@
 import React from "react";
+import { Buttons } from "../../components/Buttons/Buttons";
+import "./NavBar.css";
 
 export class NavBar extends React.Component {
   render() {
-    return <h1>componente NavBar</h1>;
+    return (
+      <>
+        <header>
+          <Buttons />
+        </header>
+      </>
+    );
   }
 }
