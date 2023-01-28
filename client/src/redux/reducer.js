@@ -1,38 +1,30 @@
-import { GET_BREEDS, CLEAN_BREEDS } from "./types";
+import { GET_ALL_BREEDS, GET_BREED_ID, GET_BREEDS_FOR_PAGE } from "./types";
 
 const initialState = {
-  breeds: [],
-  //   dogsToDisplay: new Array(8).fill(""),
-  //   temperaments: [],
-  //   dogsIsFetching: false,
-  //   temperamentsIsFetching: false,
-  //   modalDogCreatedSuccess: false,
-  //   modalDogCreatedFailed: false,
-  //   postDogIsFetching: false,
-  //   dogsFetchError: false,
-  //   temperamentsFetchError: false,
-  //   postDogError: false,
-  //   order: orderOp[0],
-  //   filterByTemperament: [],
-  //   filterByOrigin: originOp[0],
-  //   filterBySearch: "",
-  //   page: 1,
-  //   prevPage: 1,
-  //   totalPages: 1,
-  //   imgStack: false,
+  allBreeds: [],
+  breedCards: [],
+  breedDetail: [],
+  allTemperaments: [],
+  breedsForPage: [],
+  form: [],
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_BREEDS:
+    case GET_ALL_BREEDS:
       return {
         ...state,
-        breeds: action.payload,
+        allBreeds: action.payload,
       };
-    case CLEAN_BREEDS:
+    case GET_BREED_ID:
       return {
         ...state,
-        breeds: [],
+        breedCards: action.payload,
+      };
+    case GET_BREEDS_FOR_PAGE:
+      return {
+        ...state,
+        breedsForPage: action.payload,
       };
     default:
       return {
@@ -40,15 +32,3 @@ export default function rootReducer(state = initialState, action) {
       };
   }
 }
-
-//   switch (action.type) {
-// case FETCH_DOGS_START: {
-//   return {
-//     ...state,
-// dogsFetchError: false,
-// dogsIsFetching: true,
-//   };
-// }
-// default:
-//   return state;
-//   }

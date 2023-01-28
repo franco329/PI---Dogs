@@ -1,3 +1,11 @@
+/* MODAL */
+.modal {
+  display: none;
+}
+.modal.show {
+  display: flex;
+}
+
 .container {
   position: relative;
   width: 100%;
@@ -66,10 +74,10 @@ img {
   transition-delay: 0.3s;
 }
 
-a {
+/* a {
   color: #000000;
 }
 a:active {
   color: #000000;
   background-color: transparent;
-}
+} */

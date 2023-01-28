@@ -1,4 +1,4 @@
-const allTemperaments = require('../utils/allTemperaments');
+const allTemperaments = require("../utils/allTemperaments");
 
 const getTemperaments = async () => {
   const getTemp = await allTemperaments();

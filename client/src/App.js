@@ -1,25 +1,34 @@
 import { Route } from "react-router-dom";
-import { LandingPage } from "./containers/LandingPage/LandingPage";
-import { NavBar } from "./containers/Navbar/NavBar";
-import { Home } from "./containers/Home/Home";
-import "./app.css";
-import { Form } from "./components/Form/Form";
-import { BreedDetail } from "./containers/BreedDetail/BreedDetail";
+import { useEffect } from "react";
+import { getAll } from "./services/breedsBack";
+import { useDispatch } from "react-redux";
+import { initBreeds } from "./redux/actions";
+
+import LandingPage from "./react/components/LandingPage";
+import NavBar from "./react/components/Navbar";
+import Home from "./react/components/Home";
+import Form from "./react/components/Form";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getAll().then((data) => {
+      dispatch(initBreeds(data));
+    });
+  }, [dispatch]);
+
   return (
     <>
-      <div className='landing'>
+      <section className='landing-page'>
         <Route exact path='/' component={LandingPage} />
-      </div>
-      <div className='all'>
-        <div className='navbar'>
-          <Route path='/home' component={NavBar} />
-        </div>
+      </section>
+      <section>
+        <Route path='/home' component={NavBar} />
         <Route exact path='/home' component={Home} />
+      </section>
+      <section>
         <Route exact path='/home/form' component={Form} />
-        <Route exact path='/home/detail/:id' component={BreedDetail} />
-      </div>
+      </section>
     </>
   );
 };

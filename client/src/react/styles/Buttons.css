@@ -1,22 +1,20 @@
-body {
-  background-color: #16384c;
-  overflow-x: hidden;
-}
-
 header {
-  position: absolute;
-  top: -60px;
-  left: 0;
-  width: 100%;
+  background-color: #16384c;
+  position: relative;
+  top: -125px;
+  left: 0px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 30px 20px;
-  z-index: 100;
+  align-items: baseline;
+  padding: 0px 100px 0px 20px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-header .logo img {
-  max-width: 300px;
+.logo img {
+  position: relative;
+  top: 65px;
+  width: 300px;
 }
 
 .navigation {
@@ -25,7 +23,7 @@ header .logo img {
 
 .navigation li {
   list-style: none;
-  margin: 0 50px;
+  margin: 0 80px 0px;
 }
 
 .navigation li a {
@@ -41,22 +39,22 @@ header .logo img {
 
 .search {
   position: relative;
-  width: 300px;
-  height: 45px;
+  width: 250px;
+  height: 35px;
 }
 
 .search input {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 65%;
+  top: -11px;
+  left: 70px;
+  width: 70%;
   height: 100%;
   color: #fff;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.5);
   outline: none;
   border-radius: 4px;
-  padding: 0 10px 0 45px;
+  padding: 0 20px 0px 60px;
   backdrop-filter: blur(10px);
 }
 
@@ -66,10 +64,10 @@ header .logo img {
 
 .search .iconSearch {
   position: relative;
-  top: 12px;
-  left: 10px;
+  top: -2px;
+  left: 80px;
   transform: translateY(-50%);
-  padding-right: 30px;
+  padding-right: 35px;
   color: #fff;
   border-right: 1px solid #fff;
 }
