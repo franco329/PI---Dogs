@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { breedsForPage } from "../../redux/actions";
+import "../styles/ButtonsHome.css";
 
 const ButtonsHome = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const ButtonsHome = () => {
     const indexOfFirstBreed = indexOfLastBreed - breedsPerPage;
     const currentBreeds = breeds.slice(indexOfFirstBreed, indexOfLastBreed);
     setForPage(currentBreeds);
-  }, [currentPage, breeds]);
+  }, [breeds, currentPage]);
 
   // ------------ Seccion de Handles ---------------------------
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
@@ -27,19 +28,36 @@ const ButtonsHome = () => {
 
   return (
     <>
-      <div className='buttons'>
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disable={currentPage === 1}
-        >
-          Previous
-        </button>
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disable={currentPage === totalPages}
-        >
-          Next
-        </button>
+      <div className='pagination'>
+        <ul>
+          <li>
+            <button
+              className='btn btn-inicio btn-2'
+              onClick={() => handlePageChange(currentPage - 1)}
+              disable={currentPage === 1}
+            >
+              {`<<`}
+              <span></span>
+              <span></span>
+            </button>
+          </li>
+          <li>
+            <button className='btn btn-inicio btn-2'>
+              {currentPage} <span></span>
+              <span></span>
+            </button>
+          </li>
+          <li>
+            <button
+              className='btn btn-inicio btn-2'
+              onClick={() => handlePageChange(currentPage + 1)}
+              disable={currentPage === totalPages}
+            >
+              {`>>`} <span></span>
+              <span></span>
+            </button>
+          </li>
+        </ul>
       </div>
     </>
   );

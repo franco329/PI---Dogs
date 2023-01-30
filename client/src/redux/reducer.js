@@ -1,4 +1,10 @@
-import { GET_ALL_BREEDS, GET_BREED_ID, GET_BREEDS_FOR_PAGE } from "./types";
+import {
+  GET_ALL_BREEDS,
+  GET_BREED_ID,
+  GET_BREEDS_FOR_PAGE,
+  GET_ALL_TEMPERAMENTS,
+  FILTERS,
+} from "./types";
 
 const initialState = {
   allBreeds: [],
@@ -6,6 +12,7 @@ const initialState = {
   breedDetail: [],
   allTemperaments: [],
   breedsForPage: [],
+  filters: "",
   form: [],
 };
 
@@ -25,6 +32,16 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         breedsForPage: action.payload,
+      };
+    case GET_ALL_TEMPERAMENTS:
+      return {
+        ...state,
+        allTemperaments: action.payload,
+      };
+    case FILTERS:
+      return {
+        ...state,
+        filters: action.payload,
       };
     default:
       return {

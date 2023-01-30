@@ -4,6 +4,8 @@ import {
   CLEAN_BREEDS,
   GET_BREED_ID,
   GET_BREEDS_FOR_PAGE,
+  GET_ALL_TEMPERAMENTS,
+  FILTERS,
 } from "./types";
 
 export const initBreeds = (data) => {
@@ -32,5 +34,19 @@ export const breedsForPage = (data) => {
   return {
     type: GET_BREEDS_FOR_PAGE,
     payload: data,
+  };
+};
+
+export const allTemperaments = (temps) => {
+  return {
+    type: GET_ALL_TEMPERAMENTS,
+    payload: temps,
+  };
+};
+
+export const filtered = (event) => {
+  return {
+    type: FILTERS,
+    payload: event,
   };
 };

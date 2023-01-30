@@ -1,14 +1,15 @@
 import React from "react";
 import BreedCard from "./BreedCard";
-import ButtonsHome from "./ButtonsHome";
-import "../styles/Home.css";
+import Navbar from "./Navbar";
 
 const Home = () => {
   return (
-    <section className='home'>
-      <ButtonsHome />
-      <BreedCard />
-    </section>
+    <>
+      <header>
+        <Navbar />
+        <BreedCard />
+      </header>
+    </>
   );
 };
 

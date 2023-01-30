@@ -1,18 +1,15 @@
-/* MODAL */
-.modal {
-  display: none;
-}
-.modal.show {
-  display: flex;
-}
-
 .container {
   position: relative;
   width: 100%;
+  padding: 20px;
+  margin: -400px 10px 10px 0px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
+}
+input {
+  margin-left: 520px;
+  text-align: center;
 }
 
 .card {
@@ -20,19 +17,19 @@
   text-align: center;
   font-size: 25px;
   width: 300px;
-  height: 250px;
+  height: 285px;
   border-radius: 10px;
   background-color: #fff;
   margin: 30px 12px;
-  padding: 25px 15px;
+  padding: 15px 10px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 5px 202px rgba(0, 0, 0, 1);
+  box-shadow: 0 5px 202px #17a2ff;
   transition: 0.3px ease-in-out;
 }
 
 .card:hover {
-  height: 420px;
+  height: 450px;
   transition: 0.5s;
 }
 
@@ -46,19 +43,20 @@
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
 }
 
-img {
+.breedImg {
   width: 270px;
   height: 200px;
   border-radius: 9px;
   object-fit: contain;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 
-.content {
+.textContent {
   position: relative;
-  margin-top: -100px;
-  padding: 110px 15px;
+  margin: 0px;
+  padding: 60px 15px;
   text-align: center;
   font-size: large;
   color: #111;
@@ -67,7 +65,7 @@ img {
   transition: 0.3s ease-in-out;
 }
 
-.card:hover .content {
+.card:hover .textContent {
   visibility: visible;
   opacity: 1;
   margin-top: -40px;
