@@ -6,6 +6,7 @@
   justify-content: space-around;
   align-items: center;
   margin-right: 400px;
+  z-index: 100;
 }
 .btn {
   position: relative;

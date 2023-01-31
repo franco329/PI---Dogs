@@ -1,15 +1,50 @@
 .container {
   position: relative;
+  top: 300px;
   width: 100%;
-  padding: 20px;
-  margin: -400px 10px 10px 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-input {
-  margin-left: 520px;
-  text-align: center;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination {
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  --color: #17a2ff;
+  top: 200px;
+  margin-left: 340px;
+}
+.pageNumbers {
+  list-style: none;
+  display: flex;
+  margin-left: 250px;
+}
+.pageNumbers li {
+  border-radius: 15px;
+  padding: 8px;
+  border: 1px solid #017143;
+  cursor: pointer;
+}
+.pageNumbers li.active {
+  background-color: #017143;
+  color: black;
+}
+.pageNumbers li button {
+  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  color: #017143;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.pageNumbers li button:hover {
+  background-color: #017143;
+  color: black;
 }
 
 .card {

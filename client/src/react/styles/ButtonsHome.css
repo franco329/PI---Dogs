@@ -6,12 +6,25 @@
 }
 .pagination {
   position: relative;
-  margin: 30px 0px;
-  height: 600px;
-  position: static;
   display: flex;
   overflow: hidden;
   --color: #17a2ff;
+  top: 200px;
+  margin-left: 130px;
+  padding: 10px 60px;
+}
+.pageNumbers {
+  list-style: none;
+  display: flex;
+}
+.pageNumbers li {
+  padding: 8px;
+  border: 1px solid #017143;
+  cursor: pointer;
+}
+.pageNumbers li.active {
+  background-color: #fff;
+  color: black;
 }
 .pagination ul {
   list-style: none;
@@ -21,14 +34,15 @@
   display: inline-block;
 }
 .pagination ul li button {
-  left: 610px;
-  top: 180px;
   cursor: pointer;
 }
+
 button {
-  height: 45px;
-  padding: 10px 10px 10px 10px;
+  height: 35px;
   font-size: large;
+}
+input {
+  text-align: left;
 }
 .btn {
   position: relative;
@@ -49,13 +63,13 @@ button {
   position: absolute;
   width: 10px;
   height: 10px;
-  border: 3px solid;
+  border: 2px solid;
   transition: all 0.6s ease;
 }
 .btn-2 span:nth-child(1) {
   right: 10%;
   top: -15%;
-  background-color: rgb(209, 11, 11);
+  background-color: #17a2ff;
 }
 .btn-2 span:nth-child(2) {
   left: 10%;
