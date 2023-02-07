@@ -1,18 +1,29 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import {
+  getAllBreeds,
+  getAllTemperaments,
+  getDogName,
+  getDogId,
+  filterByName,
+  filterByWeight,
+  filterByTemperament,
+} from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import notImage from "../../images/notImage.jpg";
 import "../styles/BreedCard.css";
 import { useState, useEffect } from "react";
 import BreedModal from "./BreedModal";
 
 const BreedCard = () => {
+  const dispatch = useDispatch();
   const breeds = useSelector((state) => state.allBreeds);
+  const filterBreeds = useSelector((state) => state.breeds);
+  const allTemperaments = useSelector((state) => state.temperaments);
   // // ------------ Estados de Modal ---------------------------
   const [estadoModal, cambiarEstadoModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [breedDetail, setBreedDetail] = useState(null);
   // ------------- Paginado ------------------------------------------
-  const [data, setData] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
@@ -20,22 +31,19 @@ const BreedCard = () => {
   const [pageNumberLimit, setPageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
-  // -------------- Busqueda ----------------------------------------
-
-  // ----------------------------------------------------------------
-
+  // -------------- Paginado --------------------------------------------------
   const handleClick = (event) => {
     setCurrentPage(Number(event.target.id));
   };
 
   const pages = [];
-  for (let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(filterBreeds.length / itemsPerPage); i++) {
     pages.push(i);
   }
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filterBreeds.slice(indexOfFirstItem, indexOfLastItem);
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -53,14 +61,18 @@ const BreedCard = () => {
       return null;
     }
   });
+  // -------------- Handlers Filter ----------------------------------
+  const [idTemp, setIdTemp] = useState(-1);
+  function handlerFilterName(event) {}
+  function handlerFilterWeight(event) {}
+  function handlerFilterTemperament(event) {
+    dispatch(filterByTemperament(event.target.value));
+  }
 
-  useEffect(() => {
-    setData(breeds);
-  }, [breeds]);
   // ------------ Seccion de Handles Modal ---------------------------
   const handleSelectId = (id) => {
     setSelectedId(id);
-    const breedId = data.find((breed) => breed.id === id);
+    const breedId = filterBreeds.find((breed) => breed.id === id);
     setBreedDetail(breedId);
   };
 
@@ -95,8 +107,10 @@ const BreedCard = () => {
   const handleImage = (e) => {
     e.target.src = notImage;
   };
-  // -------------------- Input busqueda -------------------------------------
-
+  useEffect(() => {
+    dispatch(getAllBreeds());
+    dispatch(getAllTemperaments());
+  }, []);
   //-----------------------------------------------------------------------------------
   return (
     <>
@@ -125,6 +139,46 @@ const BreedCard = () => {
               </button>
             </li>
           </ul>
+        </div>
+        <div className='filters-container'>
+          <select onChange={(event) => handlerFilterName(event)}>
+            <option disabled defaultValue>
+              {" "}
+              Order by name
+            </option>
+            <option key={1} value='A-Z'>
+              A-Z
+            </option>
+            <option key={2} value='Z-A'>
+              Z-A
+            </option>
+          </select>
+
+          <select onChange={(event) => handlerFilterWeight(event)}>
+            <option disabled defaultValue>
+              Order by weight
+            </option>
+            <option key={1} value='max_weight'>
+              Max
+            </option>
+            <option key={2} value='mix_weight'>
+              Min
+            </option>
+          </select>
+
+          <select onChange={(event) => handlerFilterTemperament(event)}>
+            <option disabled defaultValue>
+              Temperaments
+            </option>
+            <option key={1 + "e"} value='All'>
+              All
+            </option>
+            {allTemperaments.map((temp, i) => (
+              <option value={temp.name} key={temp.id}>
+                {temp.name}
+              </option>
+            ))}
+          </select>
         </div>
         {/* ---------------------------------------------------------------------------- */}
         <div className='pageBody'>

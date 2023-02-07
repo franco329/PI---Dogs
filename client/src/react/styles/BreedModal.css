@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
   /* width: 500px; */
   /* overflow: hidden; */
   /* box-shadow: 0px 0px 15px -5px; */
@@ -40,10 +41,18 @@
 }
 
 .image-container img {
-  overflow: hidden;
+  /* overflow: hidden; */
   max-height: 250px;
   min-width: 380px;
-  margin-left: 30px;
+  /* margin-left: 30px; */
+  object-fit: contain;
+  /* display: flex; */
+  /* align-items: center; */
+}
+#img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .card-content {
   margin-top: -30px;

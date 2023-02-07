@@ -14,7 +14,12 @@ const BreedModal = ({ breed, estado, cambiarEstado }) => {
           <div className='card-container'>
             <div className='contenedor-modal'>
               <div className='image-container'>
-                <img src={breed.image} alt={breed.name} onError={handleImage} />
+                <img
+                  id='img-center'
+                  src={breed.image}
+                  alt={breed.name}
+                  onError={handleImage}
+                />
               </div>
               <div className='card-content'>
                 <div className='card-title'>

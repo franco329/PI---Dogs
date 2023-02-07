@@ -19,14 +19,6 @@ const allTemperaments = async () => {
 
   const tempDb = [];
 
-  // for (let temp of tempApi) {
-  //     let [temps] = await Temperament.findOrCreate({
-  //         where: {
-  //             name: temp
-  //         }
-  //     })
-  //     tempDb.push(temps)
-  // };
   for (let temp of tempApi) {
     let temperament = await Temperament.findOne({
       where: {

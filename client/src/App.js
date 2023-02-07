@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import { useEffect } from "react";
 import { getAll } from "./services/breedsBack";
 import { useDispatch } from "react-redux";
-import { initBreeds } from "./redux/actions";
+import { getAllBreeds } from "./redux/actions";
 
 import "./react/styles/LandingPage.css";
 import { LandingPage } from "./react/components/LandingPage";
@@ -13,7 +13,7 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     getAll().then((data) => {
-      dispatch(initBreeds(data));
+      dispatch(getAllBreeds(data));
     });
   }, [dispatch]);
   return (
